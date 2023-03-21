@@ -16,7 +16,7 @@ playEl.addEventListener("click", function(){
         numberlist.remove();
         labelsEl.style.display = "block";
         userNumbers(newNumbers, labelsEl)
-    }, 10000);
+    }, 2000);
     
 })
 
@@ -45,12 +45,19 @@ function NumbersInDom (container, elements){
 
 //recuperare i numeri dell'user e controllare quali di questi sono corretti
 
-function userNumbers (form){
-    form.addEventListener("submit", function(){
+function userNumbers (addedNumbers, form){
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
         //array coi numeri giusti
         const correctNumbers = [];
+        for (let i = 0; i < 5; i++){
+            //evitare che un numero giusto venga inserito più volte per aumentare il punteggio
+            if (addedNumbers.includes(Number(e.target[i].value)) && !correctNumbers.includes(Number(e.target[i].value))) {
+                correctNumbers.push(Number(e.target[i].value));
+        }
         let points = correctNumbers.length;
         outputPoints(result, points, correctNumbers)
+        }    
     })
 }
 
