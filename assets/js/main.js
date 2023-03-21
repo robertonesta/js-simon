@@ -10,8 +10,9 @@ const numberlist = document.querySelector(".list")
 //timer 30 secondi
 playEl.addEventListener("click", function(){
     const newNumbers = randomNumbers();
+    NumbersInDom(numberlist, newNumbers)
     setTimeout(() => {
-        
+        numberlist.remove();
     }, 3000);
     
 })
@@ -21,10 +22,20 @@ playEl.addEventListener("click", function(){
 function randomNumbers(){
     const numbers = [];
     while (numbers.length < 5){
-        const number = Math.floor(Math.random() * 100);
+        const number = Math.floor(Math.random() * 100) + 1;
         if(!numbers.includes(number)){
             numbers.push(number);
         }
     }
     return numbers;
+}
+
+//mostrare i numeri nel DOM
+
+function NumbersInDom (container, elements){
+    for (let i = 0; i < elements.length; i++){
+        const element = document.createElement("li");
+        element.innerText = elements[i]
+        container.append(element);
+    }
 }
