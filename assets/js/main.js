@@ -15,7 +15,8 @@ playEl.addEventListener("click", function(){
     setTimeout(() => {
         numberlist.remove();
         labelsEl.style.display = "block";
-    }, 3000);
+        userNumbers(newNumbers, labelsEl)
+    }, 10000);
     
 })
 
@@ -44,7 +45,7 @@ function NumbersInDom (container, elements){
 
 //recuperare i numeri dell'user e controllare quali di questi sono corretti
 
-function userNumbers (randomNumbers, form){
+function userNumbers (form){
     form.addEventListener("submit", function(){
         //array coi numeri giusti
         const correctNumbers = [];
@@ -53,4 +54,14 @@ function userNumbers (randomNumbers, form){
     })
 }
 
+//punteggio finale
+
+function outputPoints(outputEl, points, guessed){
+
+    if (points != 0){
+        outputEl.innerText = `Hai indovinato ${points} numeri!`
+    } else{
+        outputEl.innerText = `Non hai indovinato nessun numero`
+    }
+}
 
